@@ -9,11 +9,11 @@ import { TicketsModule } from './modules/tickets/tickets.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.DB_HOST || 'localhost',
       port: 5432,
-      username: 'user',
-      password: 'userpwd',
-      database: 'services',
+      username: process.env.DB_USERNAME || 'user',
+      password: process.env.DB_USERPWD || 'userpwd',
+      database: process.env.DB_NAME || 'services',
       entities: [Agent, User, Ticket],
       synchronize: true,
     }),
