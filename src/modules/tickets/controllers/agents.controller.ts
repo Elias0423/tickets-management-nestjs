@@ -22,7 +22,7 @@ import { AgentsService } from '../services/agents.service';
 import { Ticket } from '../models/entities/ticket.entity';
 import { TicketsService } from '../services/tickets.service';
 @ApiTags('agents')
-@Controller('agents')
+@Controller('api/v1/agents')
 export class AgentsController {
   constructor(
     private agentsService: AgentsService,

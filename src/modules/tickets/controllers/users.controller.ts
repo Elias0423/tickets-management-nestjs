@@ -23,7 +23,7 @@ import { TicketsService } from '../services/tickets.service';
 import { UsersService } from '../services/users.service';
 
 @ApiTags('users')
-@Controller('users')
+@Controller('api/v1/users')
 export class UsersController {
   constructor(
     private usersService: UsersService,

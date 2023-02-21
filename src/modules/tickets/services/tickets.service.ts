@@ -33,15 +33,15 @@ export class TicketsService {
     const agentWithLessTickets = await this.agentsRepository
       .createQueryBuilder('agent')
       .leftJoin(Ticket, 'ticket', 'ticket.agent_id = agent.id')
-      .select('agent.id')
       .addSelect('COUNT(ticket.id)', 'total')
       .groupBy('agent.id')
       .orderBy('total', 'ASC')
       .getRawOne();
     if (!agentWithLessTickets)
       throw new NotFoundException('No hay técnicos disponibles');
-    return this.agentsRepository.findOneBy({
-      id: agentWithLessTickets.agent_id,
-    });
+    const agent = new Agent();
+    agent.id = agentWithLessTickets.agent_id;
+    agent.name = agentWithLessTickets.agent_name;
+    return agent;
   }
 }
