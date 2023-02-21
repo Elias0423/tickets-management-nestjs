@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  database:
+    container_name: "psql-database"
+    image: postgres
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: userpwd
+      POSTGRES_DB: services
+    volumes:
+      - ~/pgdata:/var/lib/postgresql/data
+
+  app:
+    container_name: "tickets-management-nestjs"
+    image: eliasramos/tickets-management-nestjs:v1
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: host.docker.internal
+      DB_USERNAME: user
+      DB_USERPWD: userpwd
+      DB_NAME: services
